@@ -1,14 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-import Main from './pages/Main'; // Our custom react component
+import { Router, Route, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import store from './store';
+import AppShell from './components/shell/AppShell';
 
-//Needed for onTouchTap
-//Can go away when react 1.0 release
-//Check this repo:
-//https://github.com/zilverline/react-tap-event-plugin
-injectTapEventPlugin();
+ReactDOM.render(
+    <Provider store={store}>
+        <Router history={browserHistory}>
 
-// Render the main app react component into the app div.
-// For more details see: https://facebook.github.io/react/docs/top-level-api.html#react.render
-ReactDOM.render(<Main />, document.getElementById('app'));
+            <Route path="/" component={AppShell}>
+            </Route>
+
+        </Router>
+    </Provider>
+, document.getElementById('root'));

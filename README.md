@@ -4,14 +4,6 @@
 
 npm install
 
-# Dev
+# Launch app
 
-npm run start
-
-# Prod
-
-npm run build
-
-# ESLint
-
-npm run lint
+gulp
