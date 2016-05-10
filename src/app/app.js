@@ -1,19 +1,39 @@
 import React from 'react';
 import {render} from 'react-dom';
+import Navbar from './components/Navbar';
+import Question from './components/Question';
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            questions: []
+        };
+    }
+    componentDidMount () {
+        this.serverRequest = $.get("http://jservice.io/api/clues", function (results) {
+            this.setState({
+                questions: results
+            });
+        }.bind(this));
+    }
+    componentWillUnmount () {
+        this.serverRequest.abort();
+    }
     render () {
-        return  <div className="navbar-fixed">
-                    <nav className="grey darken-1">
-                        <div className="nav-wrapper">
-                            <a href="#!" className="brand-logo center">TheQuizMachine</a>
-                            <ul className="right hide-on-med-and-down">
-                                <li><a href="mobile.html"><i className="material-icons">settings</i></a></li>
-                            </ul>
-                        </div>
-                     </nav>
-                </div>
+        var rows = [];
+        this.state.questions.forEach(function(item) {
+            if (item.question != "") {
+                rows.push(<Question key={item.id} text={item.question} />);
+            }
+        });
 
+        return  <div>
+                    <Navbar/>
+                    <div className="container">
+                        {rows}
+                    </div>
+                </div>
     }
 }
 
