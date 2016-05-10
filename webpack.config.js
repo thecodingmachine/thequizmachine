@@ -16,14 +16,6 @@ var config = {
                 query: {
                     presets: [ 'react', 'es2015', 'stage-3' ]
                 }
-            },
-            {
-                test: /\.less$/,
-                loader: "style!css!less"
-            },
-            {
-                test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-                loader: 'file-loader'
             }
         ]
     },
@@ -32,6 +24,10 @@ var config = {
             {
                 from: path.resolve(__dirname, 'src/index.html'),
                 to: path.resolve(__dirname, 'dist/index.html')
+            },
+            {
+                from: path.resolve(__dirname, 'src/vendor'),
+                to: path.resolve(__dirname, 'dist/vendor'),
             }
         ])
     ]

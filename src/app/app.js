@@ -1,17 +1,20 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
-import { Provider } from 'react-redux';
-import store from './store';
-import AppShellContainer from './components/shell/AppShellContainer';
+import {render} from 'react-dom';
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Router history={browserHistory}>
+class App extends React.Component {
+    render () {
+        return  <div className="navbar-fixed">
+                    <nav className="grey darken-1">
+                        <div className="nav-wrapper">
+                            <a href="#!" className="brand-logo center">TheQuizMachine</a>
+                            <ul className="right hide-on-med-and-down">
+                                <li><a href="mobile.html"><i className="material-icons">settings</i></a></li>
+                            </ul>
+                        </div>
+                     </nav>
+                </div>
 
-            <Route path="/" component={AppShellContainer}>
-            </Route>
+    }
+}
 
-        </Router>
-    </Provider>
-, document.getElementById('root'));
+render(<App/>, document.getElementById('app'));
